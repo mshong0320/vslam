@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import sys
 ros_path = '/opt/ros/kinetic/lib/python2.7/dist-packages'
@@ -104,6 +105,6 @@ def match_frames(f1, f2):
     SE3 = extractRot_trans(model.params)
 
     print(sum(inliers), len(inliers))
-    
+
     # index intot he array
     return idx1[inliers], idx2[inliers], SE3

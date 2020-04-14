@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import sys
 ros_path = '/opt/ros/kinetic/lib/python2.7/dist-packages'

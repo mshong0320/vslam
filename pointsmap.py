@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import sys
 ros_path = '/opt/ros/kinetic/lib/python2.7/dist-packages'
@@ -42,7 +43,7 @@ class Map:
         gl.glEnable(gl.GL_DEPTH_TEST)
 
         pm = pango.ProjectionMatrix(w, h, 420, 420, w//2, h//2, 0.2, 1000)
-        mv = pango.ModelViewLookAt(0, -20, -20, 0, 0, 0, 0, -1, 0)
+        mv = pango.ModelViewLookAt(0, -25, -50, 0, 0, 0, 0, -1, 0)
         self.scam = pango.OpenGlRenderState(pm, mv)
         ui_width = 180
         self.handler = pango.Handler3D(self.scam)

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import sys
 import numpy.core.multiarray
@@ -19,9 +20,6 @@ from utils import *
 from display import Display
 from pointsmap import Point, Map
 from frame import Frame
-# import pypangolin as pango
-# from multiprocessing import Process, Queue
-# import OpenGL.GL as gl
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -38,8 +36,7 @@ K = np.array([[F, 0, W//2],
               [0, 0,    1]]) 
 
 mapp = Map()
-display = Display(W,H)
-
+display = Display(W, H) if os.getenv("D2D") is not None else None
 
 def process_frame(img):
     img = cv2.resize(img, (W,H))
@@ -76,7 +73,8 @@ def process_frame(img):
         cv2.line(img, (u1, v1), (u2, v2), color=(255, 0, 0))
 
     # 2-D
-    display.paint(img)
+    if display is not None:
+        display.paint(img)
 
     # 3-D
     mapp.display_map()
