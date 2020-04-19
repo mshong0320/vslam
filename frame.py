@@ -10,16 +10,16 @@ import numpy as np
 from utils import extract, normalize
 
 
-IRt = np.eye(4)
-
 class Frame:
     def __init__(self, mapp, img, K):
         self.K = K
         self.Kinv = np.linalg.inv(self.K)
-        self.pose = IRt
+        self.pose = np.eye(4)
+        self.h, self.w = img.shape[0:2]
 
-        pts, self.des = extract(img)
-        self.pts = normalize(self.Kinv, pts)
+        self.kpus, self.des = extract(img)
+        self.kps = normalize(self.Kinv, self.kpus)
+        self.pts = [None]*len(self.kps)
 
         self.id = len(mapp.frames)
         mapp.frames.append(self)
